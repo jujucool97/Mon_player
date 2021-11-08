@@ -1,75 +1,23 @@
-<!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
     <title>Mon premier web component</title>
+    <meta charset="utf-8">
+    <script src="./index.js" type="module"></script>
     <script src="./lib/webaudio-controls.js"></script>
 </head>
 
 <body>
-    <video id="player" controls src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4">
-    </video>
-    <br><button id="play" onclick="play()"><img src="./assets/play.jpg"></img></button>
-    <button id="pause" onclick="pause()"><img src="./assets/pause.png"></img></button>
-    <button onclick="getInfo()"><img src="./assets/info.jpg"></img></button>
-    <button onclick="avance10s()"></img><img src="./assets/avance.png"></button>
-    <button onclick="recule10s()"></img><img src="./assets/recule.png"></button>
-    <button onclick="vitesse4x()"></img><img src="./assets/x4.jpg"></button>
-    <button onclick="vitesseNormale()">Vitesse Normale</button>
-    <webaudio-knob oninput="setVolume(value)" id="volume" src="./assets/lineshadow2.png" value=0.5 min=0 max=1
-        step=0.01 diameter="64" tooltip="Volume: %s">
-    </webaudio-knob>
-</body>
+    <my-player id="player" 
+               src="https://mainline.i3s.unice.fr/mooc/elephants-dream-medium.mp4">
+    </my-player>
 
-<script>
-    let player = document.querySelector("#player");
-
-    let volume = document.querySelector("#volume")
-
-    player.ontimeupdate = () => {
-        console.log("Temps courant = " + player.currentTime)
-    }
-
-    player.onended = () => {
-        console.log("video terminée");
-    }
-
-    function play() {
-        player.play();
-    }
-
-    function pause() {
-        player.pause();
-    }
-
-    function avance10s() {
-        player.currentTime += 10;
-    }
-
-    function recule10s() {
-        player.currentTime -= 10;
-    }
-
-    function vitesse4x() {
-        player.playbackRate = 4;
-    }
-
-    function vitesseNormale() {
-        player.playbackRate = 1;
-    }
-
-    function setVolume(value) {
-        player.volume = value
-        console.log(value)
-    }
-
-    function getInfo() {
-        console.log("Durée de la vidéo : " + player.duration);
-        console.log("Temps courant : " + player.currentTime);
-    }
-</script>
-
+    <script>
+       const p = document.querySelector("#player");
+       function play() {
+           p.play();
+       }
+    </script>
 </body>
 
 </html>
