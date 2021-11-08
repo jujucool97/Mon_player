@@ -3,10 +3,7 @@ import './lib/webaudio-controls.js';
 
 const getBaseURL = () => {
     return new URL('.', import.meta.url);
-
 };
-
-
 
 let style = `
 figure {
@@ -24,8 +21,7 @@ figure {
      margin: 0 auto;
 
  }
-
-
+ 
 .controls {
     width:100%;
     height:8.0971659919028340080971659919028%;
@@ -134,10 +130,7 @@ let template = /*html*/`
 class MyVideoPlayer extends HTMLElement {
     constructor() {
         super();
-
-
         console.log("BaseURL = " + getBaseURL());
-
         this.attachShadow({ mode: "open" });
     }
 
@@ -213,8 +206,6 @@ class MyVideoPlayer extends HTMLElement {
         this.shadowRoot.querySelector("#pannerSlider").oninput = (evt) => {
             this.pannerNode.pan.value = evt.target.value;
         }
-
-
     }
 
     // API de mon composant
@@ -228,6 +219,7 @@ class MyVideoPlayer extends HTMLElement {
     avance10s() {
         this.player.currentTime += 10;
     }
+	
     recule10s() {
         this.player.currentTime -= 10;
     }
@@ -244,13 +236,16 @@ class MyVideoPlayer extends HTMLElement {
         this.player.volume = value
         console.log(value)
     }
+	
     getInfo() {
         console.log("Durée de la vidéo : " + this.player.duration);
         console.log("Temps courant : " + this.player.currentTime);
     }
+	
     fullscreen(){
         this.player.requestFullscreen()
     }
+	
     buildAudioGraphPanner() {
         // create source and gain node
          this.source = this.context.createMediaElementSource(this.player);
@@ -260,7 +255,5 @@ class MyVideoPlayer extends HTMLElement {
         this.source.connect(this.pannerNode);
         this.pannerNode.connect(this.context.destination);
     }
-
 }
-
 customElements.define("my-player", MyVideoPlayer);
